@@ -1,0 +1,102 @@
+<mat-toolbar color="primary" class="app-toolbar">
+    <span>TechTrove</span>
+    <span class="toolbar-spacer"></span>
+    <nav>
+        <button mat-button class="login-button" routerLink="/login">
+        <mat-icon>person</mat-icon>
+        Login
+      </button>
+    </nav>
+  </mat-toolbar>
+  
+  <div class="home-container">
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Welcome to TechTrove</h1>
+          <p>Discover the latest in electronic innovations</p>
+          <button mat-raised-button color="primary">
+            Shop Now
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </div>
+    </section>
+  
+    <div class="container">
+        <h2 class="featured-title">Featured Products</h2>
+        
+        <div class="products-grid">
+          <mat-card class="product-card" *ngFor="let product of products">
+            <img mat-card-image src="{{'assets' + product.images}}" [alt]="product.name">
+            <mat-card-content>
+              <h3>{{product.name}}</h3>
+              <p class="category">{{product.category}}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+  
+    <section class="categories">
+      <h2>Shop by Category</h2>
+      <div class="categories-grid">
+        <mat-card *ngFor="let category of categories" class="category-card">
+          <mat-card-content>
+            <mat-icon>{{category.icon}}</mat-icon>
+            <h3>{{category.name}}</h3>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+  
+    <section class="newsletter">
+      <h2>Stay Updated</h2>
+      <p>Subscribe to our newsletter for the latest product news and exclusive offers</p>
+      <form #newsletterForm="ngForm" (ngSubmit)="onSubscribe(email.value)" class="newsletter-form">
+        <mat-form-field appearance="outline">
+          <input matInput type="email" placeholder="Enter your email" #email="ngModel" ngModel name="email" required email>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!newsletterForm.form.valid">
+          Subscribe
+        </button>
+      </form>
+    </section>
+  </div>
+  
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>TechTrove</h3>
+        <p>Your one-stop shop for all things tech</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a routerLink="/about">About Us</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+          <li><a routerLink="/faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a routerLink="/shipping">Shipping</a></li>
+          <li><a routerLink="/returns">Returns</a></li>
+          <li><a routerLink="/warranty">Warranty</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-links">
+          <a href="#"><mat-icon>facebook</mat-icon></a>
+          <a href="#"><mat-icon>twitter</mat-icon></a>
+          <a href="#"><mat-icon>instagram</mat-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 TechTrove. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  

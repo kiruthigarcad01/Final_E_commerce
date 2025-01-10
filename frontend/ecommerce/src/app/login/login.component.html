@@ -1,0 +1,97 @@
+<div class="login-container">
+  <div class="login-content">
+    <mat-card class="login-card">
+      <div class="login-header">
+        <h1>Welcome Back</h1>
+        <p>Please sign in to continue</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email Address</mat-label>
+          <input 
+            matInput 
+            type="email" 
+            formControlName="email" 
+            placeholder="Enter your email"
+          >
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Password</mat-label>
+          <input 
+            matInput 
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="Enter your password"
+          >
+          <mat-icon matPrefix>lock</mat-icon>
+          <button 
+            mat-icon-button 
+            matSuffix 
+            type="button"
+            (click)="hidePassword = !hidePassword"
+          >
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <mat-checkbox color="primary">Remember me</mat-checkbox>
+        </div>
+
+        <button 
+          mat-raised-button 
+          color="primary" 
+          class="login-button" 
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          <div *ngIf="isLoading" class="spinner-container">
+            <mat-progress-spinner
+              mode="indeterminate"
+              diameter="20"
+              color="accent"
+            ></mat-progress-spinner>
+          </div>
+          <span *ngIf="!isLoading">Sign In</span>
+        </button>
+
+        <div class="social-login">
+          <div class="divider">
+            <span>Or continue with</span>
+          </div>
+          <div class="social-buttons">
+            <button mat-stroked-button type="button" class="google-btn">
+              <mat-icon>
+                <img src="assets/images/google.webp" alt="Google">
+              </mat-icon>
+              Google
+            </button>
+            <button mat-stroked-button type="button" class="facebook-btn">
+              <mat-icon>
+                <img src="assets/images/facebook.webp" alt="Facebook">
+              </mat-icon>
+              Facebook
+            </button>
+          </div>
+        </div>
+
+        <p class="signup-text">
+          Don't have an account? <a href="/sign-up">Sign up</a>
+        </p>
+      </form>
+    </mat-card>
+  </div>
+</div>
+
