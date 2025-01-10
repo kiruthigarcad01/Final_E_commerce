@@ -1,0 +1,90 @@
+<nav class="navbar row">
+    <div class="col-12 col-md-3">
+      <div class="navbar-brand">
+        <a routerLink="/customerHome">
+          <img width="150px" src="./assets/images/ecommerce logo 2.jpg"/>
+        </a>
+      </div>
+    </div>
+  
+    <div class="col-12 col-md-6 mt-2 mt-md-0">
+      <div class="input-group">
+        <input
+          type="text"
+          id="search_field"
+          class="form-control"
+          placeholder="Enter Product Name ..."
+          [(ngModel)] = 'searchText'
+          (input)="clearSearch()"
+          (keydown.enter)="searchByEnterKey()"
+        />
+        <div class="input-group-append">
+          <button (click)="search()" id="search_btn" class="btn">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
+      <a routerLink="/cart">
+        <span id="cart" class="ml-3">Cart</span>
+        <span class="ml-1" id="cart_count">{{cartCount}}</span>
+      </a>
+    </div>
+  </nav>
+
+<div class="container container-fluid">
+    <div *ngIf="product != null; else elseData" class="row f-flex justify-content-around">
+        <div class="col-12 col-lg-5 img-fluid" id="product_image">
+            <img src="{{'assets' + product.images}}" alt="sdf" height="500" width="500">
+        </div>
+
+        <div class="col-12 col-lg-5 mt-5">
+            <h3>{{product.name}}</h3>
+            <p id="product_id">Product # {{product.id}}</p>
+
+            <hr>
+
+            <div class="rating-outer">
+                <div class="rating-inner" [ngStyle] = "{'width': product.ratings / 5 * 100 + '%'}"></div>
+            </div>
+
+            <hr>
+
+            <p id="product_price">₹{{product.price}}</p>
+            <div class="stockCounter d-inline">
+                <span class="btn btn-danger minus" (click)="decreaseQty()">-</span>
+
+                <input type="number" class="form-control count d-inline" value="1" [(ngModel)]="qty" readOnly />
+
+                <span class="btn btn-primary plus" (click)="increaseQty()">+</span>
+            </div>
+             <button type="button" id="cart_btn" class="btn btn-primary d-inline ml-4" (click)="addToCart()">Add to Cart</button>
+
+            <hr>
+
+            <p>Status: <span id="stock_status" [innerText] = "product.stock > 0 ? 'In Stock' : 'Out Of Stock'" [ngStyle] = "{'color': product.stock > 0 ? 'green' : 'red' }"></span></p>
+
+            <hr>
+
+            <h4 class="mt-2">Description:</h4>
+            <p>{{product.description}}</p>
+            <hr>
+            <p id="product_seller mb-3">Sold by: <strong>{{product.seller}}</strong></p>
+                    
+        </div>
+
+    </div>
+
+    <ng-template #elseData>
+        <h3>No Product Found</h3>
+    </ng-template>
+
+</div>
+
+<footer class="py-1">
+  <div class="footer-bottom">
+    <p>&copy; 2024 TechTrove. All rights reserved.</p>
+  </div>
+  </footer>

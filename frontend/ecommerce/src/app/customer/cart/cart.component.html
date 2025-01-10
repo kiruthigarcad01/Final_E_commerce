@@ -1,0 +1,100 @@
+<nav class="navbar row">
+    <div class="col-12 col-md-3">
+      <div class="navbar-brand">
+        <a routerLink="/customerHome">
+          <img width="150px" src="./assets/images/ecommerce logo 2.jpg"/>
+        </a>
+      </div>
+    </div>
+  
+    <div class="col-12 col-md-6 mt-2 mt-md-0">
+      <div class="input-group">
+        <input
+          type="text"
+          id="search_field"
+          class="form-control"
+          placeholder="Enter Product Name ..."
+          [(ngModel)] = 'searchText'
+          (input)="clearSearch()"
+          (keydown.enter)="searchByEnterKey()"
+        />
+        <div class="input-group-append">
+          <button (click)="search()" id="search_btn" class="btn">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
+      <a routerLink="/cart">
+        <span id="cart" class="ml-3">Cart</span>
+        <span class="ml-1" id="cart_count">{{cartCount}}</span>
+      </a>
+    </div>
+  </nav>
+
+<div *ngIf="cartItems.length > 0; else noProducts" class="container container-fluid">
+    <h2 class="mt-5">Your Cart: <b>{{ cartCount }} items</b></h2>
+
+    <div class="row d-flex justify-content-between">
+        <div class="col-12 col-lg-8">
+            <hr />
+            <div *ngFor="let item of cartItems" class="cart-item">
+                <div class="row">
+                    <div class="col-4 col-lg-3">
+                        <img src="{{ 'assets' + item.product.images}}" alt="Product Image" height="90" width="115">
+                    </div>
+
+                    <div class="col-5 col-lg-3">
+                        <a [routerLink]="'/product/' + item.product.id">{{ item.product.name }}</a>
+                    </div>
+
+                    <div class="col-4 col-lg-2 mt-4 mt-lg-0">
+                        <p id="card_item_price">₹{{ item.product.price }}</p>
+                    </div>
+
+                    <div class="col-4 col-lg-3 mt-4 mt-lg-0">
+                        <div class="stockCounter d-inline">
+                            <span class="btn btn-danger minus" (click)="decreaseQty(item.product.id)">-</span>
+                            <input type="number" class="form-control count d-inline" [value]="item.qty" readonly />
+                            <span class="btn btn-primary plus" (click)="increaseQty(item.product.id)">+</span>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-lg-1 mt-4 mt-lg-0">
+                        <i id="delete_cart_item" (click)="deleteItem(item.product.id)" class="fa fa-trash btn btn-danger"></i>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+
+        <div class="col-12 col-lg-3 my-4">
+            <div id="order_summary">
+                <h4>Order Summary</h4>
+                <hr />
+                <p>Subtotal: <span class="order-summary-values">{{ subTotal }} (Units)</span></p>
+                <p>Est. total: <span class="order-summary-values">₹{{ estTotal | number: '1.0-0' }}</span></p>
+                <hr />
+                <button id="checkout_btn" class="btn btn-primary btn-block" (click)="orderComplete()">Check out</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noProducts>
+    <div class="container text-center mt-5">
+        <h3>No Products to Display</h3>
+        <p>Your cart is empty. Please add items to your cart.</p>
+        <a routerLink="/customerHome" class="btn btn-primary mt-3">Go to Home</a>
+    </div>
+</ng-template>
+
+<footer class="py-1">
+  <div class="footer-bottom">
+    <p>&copy; 2024 TechTrove. All rights reserved.</p>
+  </div>
+  </footer>
+
+

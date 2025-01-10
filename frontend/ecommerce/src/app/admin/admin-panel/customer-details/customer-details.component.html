@@ -1,0 +1,81 @@
+<div class="customer-container">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-content">
+        <div class="header-title">
+          <h1>Customer Details</h1>
+          <p class="customer-count">Total Customers: {{ customers.length }}</p>
+        </div>
+      </div>
+    </header>
+  
+    <!-- Customer Cards Grid -->
+    <div class="customers-grid">
+      <div *ngFor="let customer of customers" class="customer-card">
+        <!-- Card Header -->
+        <div class="card-header">
+          <div class="avatar" [attr.data-initials]="getInitials(customer.userName)">
+            {{ getInitials(customer.userName) }}
+          </div>
+          <div class="customer-info">
+            <h2>{{ customer.userName }}</h2>
+            <span class="customer-id">ID: {{ customer.id }}</span>
+          </div>
+        </div>
+  
+        <!-- Card Content -->
+        <div class="card-content">
+          <div class="info-section">
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div class="info-text">
+                <label>Email</label>
+                <p>{{ customer.email }}</p>
+              </div>
+            </div>
+  
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <div class="info-text">
+                <label>Phone</label>
+                <p>{{ customer.countryCode }} {{ customer.phoneNumber }}</p>
+              </div>
+            </div>
+  
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="info-text">
+                <label>Location</label>
+                <p>{{ customer.location }}</p>
+              </div>
+            </div>
+  
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <div class="info-text">
+                <label>Date of Birth</label>
+                <p>{{ customer.dob }}</p>
+              </div>
+            </div>
+  
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <div class="info-text">
+                <label>Joined</label>
+                <p>{{ customer.createdAt }}</p>
+              </div>
+            </div>
+  
+            <div class="info-item">
+              <i class="fas fa-history"></i>
+              <div class="info-text">
+                <label>Last Updated</label>
+                <p>{{ customer.updatedAt }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

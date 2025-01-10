@@ -1,0 +1,239 @@
+/* Container Styles */
+.orders-container {
+    padding: 24px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  /* Header Styles */
+  .orders-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  
+  .orders-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a237e;
+    margin: 0;
+  }
+  
+  .orders-subtitle {
+    color: #666;
+    margin-top: 8px;
+    font-size: 16px;
+  }
+  
+  /* Grid Layout */
+  .orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* Card Styles */
+  .order-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
+  /* Card Header */
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #f8f9fa;
+    width: 100%;
+  }
+  
+  .order-id {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .header-icon {
+    color: #1a237e;
+  }
+  
+  .id-label {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .id-value {
+    color: #1a237e;
+    font-weight: 500;
+    font-family: monospace;
+    font-size: 14px;
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .status-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Card Content */
+  mat-card-content {
+    padding: 20px;
+  }
+  
+  .content-section {
+    margin-bottom: 20px;
+  }
+  
+  .content-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  
+  .section-label mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Products List */
+  .products-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .product-item {
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .product-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Amount */
+  .amount-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a237e;
+  }
+  
+  /* Card Actions */
+  mat-card-actions {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .status-update {
+    width: 100%;
+  }
+  
+  /* Form Field Styles */
+  mat-form-field {
+    width: 100%;
+  }
+  
+  ::ng-deep .mat-form-field-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ::ng-deep .mat-form-field-outline {
+    background: white;
+    border-radius: 8px;
+  }
+  
+  /* Status Select Options */
+  ::ng-deep .status-select-panel {
+    margin-top: 8px !important;
+  }
+  
+  ::ng-deep .status-option {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  
+  ::ng-deep .status-option mat-icon {
+    margin-right: 8px;
+  }
+  
+  /* Divider */
+  mat-divider {
+    margin: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .orders-container {
+      padding: 16px;
+    }
+  
+    .orders-title {
+      font-size: 24px;
+    }
+  
+    .orders-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .order-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  
+    .status-badge {
+      align-self: flex-start;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .order-card {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  

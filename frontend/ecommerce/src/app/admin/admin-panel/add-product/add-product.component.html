@@ -1,0 +1,70 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add New Product</h2>
+      <button class="close-button" (click)="onClose()">×</button>
+    </div>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <label>
+          Image URL
+          <input type="text" formControlName="images" placeholder="Enter image URL/file path">
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Name
+          <input type="text" formControlName="name" placeholder="Enter product name">
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Description
+          <textarea formControlName="description" placeholder="Enter product description"></textarea>
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Category
+          <input type="text" formControlName="category" placeholder="Enter product category">
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Price
+          <input type="number" formControlName="price" placeholder="Enter product price">
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Ratings
+          <input type="number" formControlName="ratings" placeholder="Enter product ratings">
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Seller
+          <input type="text" formControlName="seller" placeholder="Enter product seller">
+        </label>
+      </div>
+
+      <div class="form-section">
+        <label>
+          Stock
+          <input type="number" formControlName="stock" placeholder="Enter product stock">
+        </label>
+      </div>
+
+      <button type="submit" class="submit-button" [disabled]="!productForm.valid">
+        Add Product
+      </button>
+    </form>
+  </div>
+</div>

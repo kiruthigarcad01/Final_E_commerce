@@ -1,0 +1,83 @@
+<nav class="navbar row">
+  <div class="col-12 col-md-3">
+    <div class="navbar-brand">
+      <a routerLink="/customerHome">
+        <img width="150px" src="./assets/images/ecommerce logo 2.jpg"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 mt-2 mt-md-0">
+    <div class="input-group">
+      <input
+        type="text"
+        id="search_field"
+        class="form-control"
+        placeholder="Enter Product Name ..."
+        [(ngModel)] = 'searchText'
+        (input)="clearSearch()"
+        (keydown.enter)="searchByEnterKey()"
+      />
+      <div class="input-group-append">
+        <button (click)="search()" id="search_btn" class="btn">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
+    <a routerLink="/cart">
+      <span id="cart" class="ml-3">Cart</span>
+      <span class="ml-1" id="cart_count">{{cartCount}}</span>
+    </a>
+  </div>
+</nav>
+  
+  <h1 id="products_heading">Latest Products</h1>
+
+  <section id="products" class="container mt-5">
+    <div *ngIf="products.length > 0; else elseData" class="row">
+      <div *ngFor = "let product of products" class="col-sm-12 col-md-6 col-lg-3 my-3">
+        <div class="card p-3 rounded">
+          <img
+            class="card-img-top mx-auto"
+            src="{{'assets' + product.images}}"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">
+              <a routerLink="/product/{{product.id}}">
+                <h2>{{product.name}}</h2>
+              </a>
+            </h5>
+            <div class="ratings mt-auto">
+              <div class="rating-outer">
+                <div class="rating-inner" [ngStyle] = "{'width': product.ratings / 5 * 100 + '%'}"></div>
+              </div>
+            </div>
+            <p class="card-text">₹{{product.price}}</p>
+            <a routerLink="/product/{{product.id}}" id="view_btn" class="btn btn-block">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #elseData>
+      <h3>No Products to Display</h3>
+    </ng-template>
+  </section>
+
+  <script type="text/javascript">
+    const stars = 5;
+    const rating = 4.5;
+
+    const starPercentage = `${(rating / stars) * 100}%`;
+    
+    document.querySelector(`.rating-inner`).style.width = starPercentage; 
+    
+  </script>
+  <footer class="py-1">
+    <div class="footer-bottom">
+      <p>&copy; 2024 TechTrove. All rights reserved.</p>
+    </div>
+  </footer>
